@@ -20,7 +20,7 @@ do
    ((count++))
 done
 
-echo "FLIPCOUNT Triplet- "$count
+echo "FLIPCOUNT Singlet- "$count
 echo "HEADS Percentage -"$(($HEADS*10))
 echo "TAILS Percentage -"$(($TAILS*10))
 echo "flipcoin output "${flipcoin[@]}
@@ -116,6 +116,8 @@ fi
    flipcoin["$count"]=$flip1$flip2$flip3
    ((count++))
 done
+
+
 echo "FLIPCOUNT triplet- "$count
 echo "HHH Percentage -"$(($HHH*10))
 echo "HHT Percentage -"$(($HHT*10))
@@ -136,3 +138,14 @@ percentage[TTH]=$(($TTH*10))
 percentage[TTT]=$(($TTT*10))
 
 echo "percentage output "${percentage[@]}
+
+
+sorting=( $(printf "%s\n" "${percentage[@]}" | sort -n ))
+
+for i in ${!percentage[@]};
+do
+if [[ ${percentage[$i]} -eq ${sorting[13]} ]]
+then
+    echo "winner is "${i}
+fi
+done
